@@ -54,7 +54,7 @@ export const projects: Project[] = [
     problem: "Mostrar en un lugar todos mis proyectos de una forma creativa que yo mismo hice",
     objective: "Dar a conocer mis habilidades y proyectos de una manera creativa y llamativa",
     tech: ["TypeScript", "CSS", "JavaScript", "Python", "Next.js", "React", "TailwindCSS", "Github"],
-    images: ["/proyecto/portafolio.png"],
+    images: ["/public/portafolio.png"],
     solution: "La creacion de una pagina web como portafolio para mostrar todos mis proyectos actuales y futuros ademas de darme a conocer mis habilidades",
     results: "A desplegar en vercel, como trabajar una pagina web para subirla y saber diseñar con mi toque personal ",
     repo: "https://github.com/Dpz-2099/Portafolio-Lowkey-the-best",
