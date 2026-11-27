@@ -121,7 +121,7 @@ export default function Projects() {
       <SectionHeading
         number="03"
         title="Proyectos"
-        subtitle="Lo que construí durante las 10 semanas. Abre cada tarjeta para ver el detalle completo."
+        subtitle="Todos mis proyectos importantes "
       />
       <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {projects.map((p) => (
