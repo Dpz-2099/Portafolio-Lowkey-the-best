@@ -1,5 +1,6 @@
 export type Project = {
   name: string;
+  week?: string;
   description: string;
   problem: string;
   objective: string;
