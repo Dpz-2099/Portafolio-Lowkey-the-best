@@ -1,0 +1,166 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   TEMAS: next-themes pone data-theme="spider" o "poke" en <html>.
+   Cada tema solo define variables; los componentes las usan
+   a través de las clases de Tailwind (bg-bg, text-ink, bg-accent...).
+   Los valores son canales RGB para poder usar opacidad (bg-accent/20).
+   ============================================================ */
+
+/* ---------- Tema Spider: rojo y azul, estilo cómic ---------- */
+:root,
+html[data-theme="spider"] {
+  --bg: 9 12 33;
+  --surface: 19 26 60;
+  --surface2: 30 40 88;
+  --ink: 246 248 255;
+  --muted: 163 174 214;
+  --accent: 228 30 48;
+  --accent2: 41 98 255;
+  --radius: 0.35rem;
+  --pop: 6px 6px 0 0 rgb(var(--accent));
+  --pop-sm: 3px 3px 0 0 rgb(var(--accent));
+  --font-display: var(--font-bangers), sans-serif;
+}
+
+/* ---------- Tema Poké: tarjeta de entrenador, colores vivos ---------- */
+html[data-theme="poke"] {
+  --bg: 255 249 228;
+  --surface: 255 255 255;
+  --surface2: 255 236 170;
+  --ink: 28 36 64;
+  --muted: 96 108 140;
+  --accent: 59 76 202;
+  --accent2: 238 70 52;
+  --radius: 1.1rem;
+  --pop: 5px 5px 0 0 rgb(var(--accent));
+  --pop-sm: 3px 3px 0 0 rgb(var(--accent));
+  --font-display: var(--font-fredoka), sans-serif;
+}
+
+body {
+  background-color: rgb(var(--bg));
+  color: rgb(var(--ink));
+  font-family: var(--font-body), system-ui, sans-serif;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Fondo: puntos de cómic (Spider) / rayas suaves (Poké) */
+html[data-theme="spider"] body,
+:root body {
+  background-image: radial-gradient(rgb(var(--accent) / 0.18) 1.2px, transparent 1.4px);
+  background-size: 18px 18px;
+}
+html[data-theme="poke"] body {
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgb(var(--accent) / 0.05) 0 14px,
+    transparent 14px 28px
+  );
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Cada sección deja espacio para la barra fija */
+section[id] {
+  scroll-margin-top: 5rem;
+}
+
+/* ---------- Tipografía de títulos ---------- */
+.font-display {
+  font-family: var(--font-display);
+}
+html[data-theme="spider"] .font-display,
+:root .font-display {
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+html[data-theme="poke"] .font-display {
+  font-weight: 700;
+}
+
+/* ---------- Tarjeta "pop": borde grueso + sombra sólida ---------- */
+.card-pop {
+  background: rgb(var(--surface));
+  border: 3px solid rgb(var(--ink));
+  border-radius: var(--radius);
+  box-shadow: var(--pop);
+}
+.card-pop-sm {
+  background: rgb(var(--surface));
+  border: 2px solid rgb(var(--ink));
+  border-radius: var(--radius);
+  box-shadow: var(--pop-sm);
+}
+
+/* Botones */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 3px solid rgb(var(--ink));
+  border-radius: var(--radius);
+  padding: 0.6rem 1.4rem;
+  font-weight: 800;
+  transition: transform 0.15s, box-shadow 0.15s;
+  box-shadow: var(--pop-sm);
+}
+.btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 0 rgb(var(--accent));
+}
+.btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0 0 0 0 transparent;
+}
+.btn-primary {
+  background: rgb(var(--accent));
+  color: #fff;
+}
+.btn-ghost {
+  background: rgb(var(--surface));
+  color: rgb(var(--ink));
+}
+
+/* ---------- Decoraciones que solo se ven en un tema ---------- */
+.only-spider {
+  display: inline-block;
+}
+.only-poke {
+  display: none;
+}
+html[data-theme="poke"] .only-spider {
+  display: none;
+}
+html[data-theme="poke"] .only-poke {
+  display: inline-block;
+}
+
+/* Campos de formulario */
+.field {
+  width: 100%;
+  background: rgb(var(--surface));
+  color: rgb(var(--ink));
+  border: 3px solid rgb(var(--ink));
+  border-radius: var(--radius);
+  padding: 0.65rem 0.9rem;
+  outline: none;
+}
+.field:focus {
+  box-shadow: var(--pop-sm);
+}
+
+/* Accesibilidad: respeta quien prefiere menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-float {
+    animation: none;
+  }
+}
